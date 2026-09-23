@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://ddvfsun10cyy1"]
+[gd_scene load_steps=22 format=3 uid="uid://ddvfsun10cyy1"]
 
 [ext_resource type="Texture2D" uid="uid://b1krvylsek6lk" path="res://assets/characters/BIRDSPRITESHEET_Blue.png" id="1_3gvst"]
 [ext_resource type="Script" uid="uid://d2s7f7eh1nu0b" path="res://scripts/enemy.gd" id="1_55jtl"]
+[ext_resource type="PackedScene" uid="uid://d33od8jl18sof" path="res://scenes/q_learning_agent.tscn" id="3_mpr68"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55jtl"]
 atlas = ExtResource("1_3gvst")
@@ -153,3 +154,5 @@ animation = &"up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3gvst")
+
+[node name="QLearningAgent" parent="." instance=ExtResource("3_mpr68")]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d33od8jl18sof"]
+
+[ext_resource type="Script" uid="uid://cb40680ls7jjp" path="res://scripts/q_learning_agent.gd" id="1_tvlxm"]
+
+[node name="QLearningAgent" type="Node"]
+script = ExtResource("1_tvlxm")

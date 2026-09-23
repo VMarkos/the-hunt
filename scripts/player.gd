@@ -2,7 +2,8 @@ extends Area2D
 
 signal hit # Whether the player has hit something or not.
 
-@export var speed = 400 # How fast the player moves
+@export var speed = 400 / sqrt(2) # How fast the player moves
+@export var wrap_world = false
 var screen_size
 
 func _ready() -> void:
@@ -33,7 +34,13 @@ func _process(delta: float) -> void:
 		
 	# Update player position
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	if wrap_world:
+		position = Vector2(
+			fposmod(position.x, screen_size.x),
+			fposmod(position.y, screen_size.y)
+		)
+	else:
+		position = position.clamp(Vector2.ZERO, screen_size)
 	
 	# Pick the correct animation
 	if velocity.x > 0:
