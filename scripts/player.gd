@@ -3,7 +3,7 @@ extends Area2D
 signal hit # Whether the player has hit something or not.
 
 @export var speed = 400 / sqrt(2) # How fast the player moves
-@export var wrap_world = false
+var wrap_world = false
 var screen_size
 
 func _ready() -> void:

@@ -3,10 +3,11 @@ extends Area2D
 @onready var q_learning = $QLearningAgent
 @onready var player: Area2D
 @export var speed = 400 # Export variable speed
-@export var wrap_world = false
+var wrap_world = false
 var screen_size
 
 # Q learning params
+@export var pretrain: bool = false # Whether to pretrain the Q-Learning agent
 var current_state: Vector2i
 var current_dist: float
 const TILE_SIZE: float = 32.0
@@ -60,10 +61,10 @@ func disable() -> void:
 
 func take_turn(delta: float) -> Vector2:
 	var valid_actions = get_valid_actions(delta)
-	var chosen_action = q_learning.choose_action(current_state, valid_actions)
+	var chosen_action = q_learning.choose_action(current_state, valid_actions, pretrain)
 	var next_state = calculate_dist()
 	var reward = calculate_reward()
-	q_learning.update_q(current_state, chosen_action, reward, next_state)
+	q_learning.update_q(current_state, chosen_action, reward, next_state, pretrain)
 	current_state = next_state
 	return execute_action(chosen_action, delta)
 

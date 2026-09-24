@@ -4,6 +4,7 @@ extends Node2D
 @onready var camera: Camera2D = $MainCamera
 @onready var player: Area2D = $Player
 @export var time_scale: float = 1.0
+@export var wrap_world: bool = false
 
 func _ready() -> void:
 	#new_game() # Uncomment just for debugging
@@ -13,14 +14,15 @@ func _ready() -> void:
 
 
 func game_over():
-	print($Enemy.q_learning.q_table)
 	$Enemy.hide()
 	$HUD.show_game_over()
 
 
 func new_game():
 	$Player.start($PlayerSpawn.position)
+	$Player.wrap_world = wrap_world
 	$Enemy.start($EnemySpawn.position)
+	$Enemy.wrap_world = wrap_world
 	$Enemy.setup(player)
 
 
